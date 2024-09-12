@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Notas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Notas</h2>
+        <div class="input-group">
+            <label for="nota1">Nota 1:</label>
+            <input type="number" id="nota1" step="0.01" min="0" max="10">
+        </div>
+        <div class="input-group">
+            <label for="nota2">Nota 2:</label>
+            <input type="number" id="nota2" step="0.01" min="0" max="10">
+        </div>
+        <div class="input-group">
+            <label for="nota3">Nota 3:</label>
+            <input type="number" id="nota3" step="0.01" min="0" max="10">
+        </div>
+        <div class="input-group">
+            <label for="nota4">Nota 4:</label>
+            <input type="number" id="nota4" step="0.01" min="0" max="10">
+        </div>
+        <button onclick="calcularMedia()">Calcular</button>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            // Obter os valores das notas
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const nota3 = parseFloat(document.getElementById('nota3').value);
+            const nota4 = parseFloat(document.getElementById('nota4').value);
+            
+            // Validar se todos os campos foram preenchidos
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3) || isNaN(nota4)) {
+                document.getElementById('resultado').innerText = 'Por favor, preencha todas as notas.';
+                return;
+            }
+            
+            // Calcular a média
+            const media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+            // Determinar a situação
+            let resultado;
+            if (media >= 7) {
+                resultado = `Aprovado! Sua média é ${media.toFixed(2)}.`;
+            } else {
+                resultado = `Reprovado. Sua média é ${media.toFixed(2)}.`;
+            }
+
+            // Exibir o resultado
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+</body>
+</html>
